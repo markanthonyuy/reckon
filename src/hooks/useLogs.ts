@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { LogItem } from '../components'
 import { LogItemContainerProps } from '../components/LogItem'
+import { IntervalProp } from '../components/Logs'
 import { API_REFETCH_INTERVAL, API_URL } from '../constatns/api'
 import { useInterval } from './useInterval'
 
@@ -11,7 +12,7 @@ export const useLogs = () => {
   const [historicalData, setHistoricalData] = useState<{
     [stock: string]: number[]
   }>({})
-  const [interval, setInterval] = useState<number | null>(API_REFETCH_INTERVAL)
+  const [interval, setInterval] = useState<IntervalProp>(API_REFETCH_INTERVAL)
   let stockHistory = {}
 
   async function getLog() {

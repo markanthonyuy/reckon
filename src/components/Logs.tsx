@@ -1,11 +1,12 @@
 import React from 'react'
 import { Box, Flex, Heading, Button } from '@chakra-ui/react'
-import { API_REFETCH_INTERVAL, API_URL } from '../constatns/api'
+import { API_REFETCH_INTERVAL } from '../constatns/api'
 import { LogItem, LogItemContainerProps } from './LogItem'
 
+export type IntervalProp = number | null
 export interface LogProps {
-  interval: number | null
-  setInterval: (val: number | null) => void
+  interval: IntervalProp
+  setInterval: (val: IntervalProp) => void
   logs: LogItemContainerProps[]
 }
 
