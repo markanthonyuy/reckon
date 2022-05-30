@@ -1,7 +1,8 @@
-import React from 'react'
-import { Box, Flex, Heading, Button } from '@chakra-ui/react'
+import React, { useCallback } from 'react'
+import { Box, Flex, Heading, Button, ControlBox } from '@chakra-ui/react'
 import { API_REFETCH_INTERVAL } from '../constatns/api'
 import { LogItem, LogItemContainerProps } from './LogItem'
+import { ControlButton } from './ControlButton'
 
 export type IntervalProp = number | null
 export interface LogProps {
@@ -11,6 +12,10 @@ export interface LogProps {
 }
 
 export const Logs: React.FC<LogProps> = ({ interval, setInterval, logs }) => {
+  const onClickHandler = useCallback(() => {
+    setInterval(interval ? null : API_REFETCH_INTERVAL)
+  }, [setInterval, interval])
+
   return (
     <Box width="300px" mr="20px">
       <Flex
@@ -20,11 +25,7 @@ export const Logs: React.FC<LogProps> = ({ interval, setInterval, logs }) => {
         alignItems="center"
       >
         <Heading>Log</Heading>
-        <Button
-          onClick={() => setInterval(interval ? null : API_REFETCH_INTERVAL)}
-        >
-          {interval ? 'Pause' : 'Resume'} Log
-        </Button>
+        <ControlButton onClickHandler={onClickHandler} interval={interval} />
       </Flex>
       <Flex direction="column" h="80vh" overflowY="auto">
         {logs?.map((data, i) => (
