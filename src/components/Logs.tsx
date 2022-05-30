@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Box, Flex, Heading, Button, ControlBox } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import { API_REFETCH_INTERVAL } from '../constatns/api'
 import { LogItem, LogItemContainerProps } from './LogItem'
 import { ControlButton } from './ControlButton'

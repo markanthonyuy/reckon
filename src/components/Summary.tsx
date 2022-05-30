@@ -26,7 +26,7 @@ interface SummaryProps {
 
 export const Summary: React.FC<SummaryProps> = ({ historicalData }) => {
   return (
-    <Flex width="calc(100% - 400px)" flexDirection="column">
+    <Flex width="calc(100% - 300px)" flexDirection="column">
       <Heading mb="20px">Summary</Heading>
       <TableContainer>
         <Table size="sm">
