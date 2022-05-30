@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Logs, Summary } from './components'
+import { useInterval } from './hooks/useInterval'
+import { Flex } from '@chakra-ui/react'
+import { useLogs } from './hooks/useLogs'
 
 function App() {
+  const { shouldRefetch, getLog, interval, setInterval, logs, historicalData } =
+    useLogs()
+  useInterval(() => shouldRefetch.current && getLog(), interval)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Flex padding="20px">
+      <Logs setInterval={setInterval} interval={interval} logs={logs} />
+      <Summary historicalData={historicalData} />
+    </Flex>
+  )
 }
 
-export default App;
+export default App
